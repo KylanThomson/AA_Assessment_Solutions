@@ -23,7 +23,7 @@ def main():
     print("\nExperiment Decisions Homework - Dataset 2.csv:")
     print(ab_testing_data.head())
 
-    # Inner Join merging Web Data Homework - Dataset 1.csv with Experiment Decisions Homework - Dataset 2.csv
+    # Inner Join merging Web Data Homework - Dataset 1.csv with Experiment Decisions Homework - Dataset 2.csv on cisitor_id
     joined_df = pd.merge(visitor_activity, ab_testing_data, on='visitor_id', how='inner')
 
     # Displaying the joined DataFrame
@@ -40,7 +40,7 @@ def main():
     print("\nSearches per visitor")
     print(unique_df['visitor_id'].value_counts())
 
-    # Apply the function to the dataframe
+    # Apply the extract_revenue function to the dataframe
     joined_df['revenue'] = joined_df['product_list'].apply(extract_revenue)
 
     # Filter the DataFrame to include only rows where 'pagename' is 'booking:reservation'
@@ -60,14 +60,11 @@ def main():
     print("\nUnique Purchases per variation")
     print(made_reservation['variation'].value_counts())
 
-
-
     # Displaying unique visits per variation
     print("\nUnique Visits Per Variation:")
     print(ab_testing_data['variation'].value_counts())
 
-
-    # Optional: Save the joined DataFrame to a new CSV file
+    # Save the joined DataFrame to a new CSV file
     joined_df.to_csv('joined_data.csv', index=False)
 
 if __name__ == "__main__":
