@@ -1,6 +1,17 @@
 import pandas as pd
 
 
+# Function to extract revenue
+def extract_revenue(product_list):
+    if pd.isna(product_list):
+        return None
+    parts = product_list.split(';')
+    if len(parts) > 3:
+        print('revenue')
+        print(parts[3])
+        return parts[3]
+    return None
+
 def main():
     # Reading the CSV files
     visitor_activity = pd.read_csv('Web Data Homework - Dataset 1.csv') 
@@ -14,7 +25,7 @@ def main():
     print("\nSecond DataFrame:")
     print(ab_testing_data.head())
 
-    # Example of an Inner Join on a common column (replace 'common_column' with your actual column name)
+    # Inner Join merging Web Data Homework - Dataset 1.csv with Experiment Decisions Homework - Dataset 2.csv
     joined_df = pd.merge(visitor_activity, ab_testing_data, on='visitor_id', how='inner')
 
     # Displaying the joined DataFrame
@@ -31,16 +42,6 @@ def main():
     print("\nSearches per visitor")
     print(unique_df['visitor_id'].value_counts())
 
-    # Function to extract revenue
-    def extract_revenue(product_list):
-        if pd.isna(product_list):
-            return None
-        parts = product_list.split(';')
-        if len(parts) > 3:
-            print('revenue')
-            print(parts[3])
-            return parts[3]
-        return None
     # Apply the function to the dataframe
     joined_df['revenue'] = joined_df['product_list'].apply(extract_revenue)
 
