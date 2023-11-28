@@ -1,6 +1,5 @@
 import pandas as pd
 
-
 # Function to extract revenue
 def extract_revenue(product_list):
     if pd.isna(product_list):
@@ -19,10 +18,9 @@ def main():
 
 
     # Displaying the first few rows of each dataframe
-    print("First DataFrame:")
+    print("Web Data Homework - Dataset 1.csv:")
     print(visitor_activity.head())
-
-    print("\nSecond DataFrame:")
+    print("\nExperiment Decisions Homework - Dataset 2.csv:")
     print(ab_testing_data.head())
 
     # Inner Join merging Web Data Homework - Dataset 1.csv with Experiment Decisions Homework - Dataset 2.csv
@@ -44,8 +42,6 @@ def main():
 
     # Apply the function to the dataframe
     joined_df['revenue'] = joined_df['product_list'].apply(extract_revenue)
-
-
 
     # Filter the DataFrame to include only rows where 'pagename' is 'booking:reservation'
     # This creates a subset of the data where a booking reservation was made
