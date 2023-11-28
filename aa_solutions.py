@@ -39,7 +39,7 @@ def main():
     # Filter and deduplicate reservations
     made_reservation = joined_df[joined_df['pagename'] == 'booking:reservation']
     made_reservation = made_reservation.drop_duplicates(subset='purchaseid', keep='first')
-    print(made_reservation)
+    print("\nReservations:\n", made_reservation, "\n")
     
     # Visitor count per variation that purchased a flight
     print("\nVisitor count per variation that purchased a flight:\n", made_reservation['variation'].value_counts())
